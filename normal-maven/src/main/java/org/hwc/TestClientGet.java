@@ -24,7 +24,7 @@ public class TestClientGet
             String string = EntityUtils.toString(entity, "utf-8");
             System.out.println(string);
         }
-        response.close();
+        response.close(); 
         httpClient.close();
     }
 }
