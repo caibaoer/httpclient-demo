@@ -1,6 +1,7 @@
 package org.hwc;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -17,6 +18,8 @@ public class TestClientGet
     {
         CloseableHttpClient httpClient=HttpClients.createDefault();
         HttpGet httpGet = new HttpGet("http://localhost:8080/testhttpclientGet");
+        RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(5000).setConnectionRequestTimeout(5000).setSocketTimeout( 5000).build();
+        httpGet.setConfig(requestConfig);
         CloseableHttpResponse response = httpClient.execute(httpGet);
         if(response.getStatusLine().getStatusCode()==200){
             HttpEntity entity = response.getEntity();
